@@ -1,10 +1,30 @@
 ﻿@page
-@model IndexModel
+@model XssTest.Pages.SearchPageModel
+
 @{
-    ViewData["Title"] = "Home page";
+    //http://localhost:5285/?searchTerm=TestString
+    //http://localhost:5285/?searchTerm=%3Cscript%3Ealert(%27Hacked!%27)%3C/script%3E
+    string searchStringXss = "<script>alert('Hacked!')</script>";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h6>Try to search: @searchStringXss </h6>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <form method="get" action="">
+            <div class="form-group">
+                <label class="control-label" for="searchTerm"></label>
+                <input id="searchTerm" name="searchTerm" class="form-control"/>
+            </div>
+            <div class="form-group pt-2">
+                <input type="submit" id="btn" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @Html.Raw(Model.Result)
+    </div>
 </div>
