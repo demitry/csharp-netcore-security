@@ -9,13 +9,23 @@
 
 <div class="row">
     <div class="col-md-4">
+        
+        @*
+        <form method="post" action="https://localhost:5239/SearchPagePost">
+            <input type="hidden" name="searchTerm" value="&lt;script&gt;alert('Hacked!')&lt;/script&gt;">
+        </form>
+        <script>
+            document.forms[0].submit();
+        </script>
+        *@
+        
         <form>
             <div class="form-group">
                 <label class="control-label" for="searchTerm"></label>
-                <input id="searchTerm" class="form-control" />
+                <input id="searchTerm" class="form-control"/>
             </div>
             <div class="form-group pt-3">
-                <input type="button" id="btn" value="Search" class="btn btn-primary" />
+                <input type="button" id="btn" value="Search" class="btn btn-primary"/>
             </div>
         </form>
     </div>
