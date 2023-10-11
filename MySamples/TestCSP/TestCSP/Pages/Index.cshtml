@@ -1,10 +1,20 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
-
+@* @model CSPModel *@
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Content Security Policy</h1>
+    <div class="mt-5 mb-5">
+        <img src="https://www.manning.com/assets/manningLogoBlack-4ce2f7a38da67c986590975d7769f389.svg">
+    </div>
+    <div class="mb-3">
+        <p id="timeSpan" style="font-size: xx-large">
+            Current time:
+        </p>
+    </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+    <script src="~/js/csp.js"></script>
+    <script>
+        window.setInterval(function () {updateTime(new Date().toLocaleTimeString());}, 1000);
+    </script>
+}
