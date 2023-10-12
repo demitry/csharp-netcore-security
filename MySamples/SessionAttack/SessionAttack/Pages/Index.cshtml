@@ -1,10 +1,15 @@
 ﻿@page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
+
+@model SessionAttack.Models.SessionWriteModel
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Login</h1>
+    <form method="post" action="">
+        <div class="mt-5 mb-5">
+            <p class="lead">Data written to session: @Model.UserAgent</p>
+        </div>
+        <div class="mb-3">
+            <a asp-page="SessionRead">Read from session </a>
+        </div>
+    </form>
 </div>
