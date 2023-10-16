@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CrossSiteRf.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using CrossSiteRf.Models;
 
@@ -27,5 +28,24 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    
+    public IActionResult AddToCart()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AddToCart(ShoppingCartItem item)
+    {
+        ShoppingCartHelper.addToCart(item);
+        return RedirectToAction("ShowCart");
+    }
+
+    // http://localhost:5207/Home/ShowCart
+    public IActionResult ShowCart()
+    {
+        var cart = ShoppingCartHelper.getCart();
+        return View(cart);
     }
 }

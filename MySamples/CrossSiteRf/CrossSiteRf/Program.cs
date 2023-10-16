@@ -1,7 +1,11 @@
+using CrossSiteRf.Helpers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -12,6 +16,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSession(); 
+StaticHttpContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+StaticHttpContext.Current?.Session.SetString("ShoppingCart", string.Empty);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
