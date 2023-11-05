@@ -7,6 +7,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddAntiforgery(options =>
+{
+    /*
+     * Specifies whether to suppress the generation of X-Frame-Options header which is used to prevent ClickJacking.
+     * By default, the X-Frame-Options header is generated with the value SAMEORIGIN.
+     * If this setting is 'true', the X-Frame-Options header will not be generated for the response.
+     */
+    options.SuppressXFrameOptionsHeader = true;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

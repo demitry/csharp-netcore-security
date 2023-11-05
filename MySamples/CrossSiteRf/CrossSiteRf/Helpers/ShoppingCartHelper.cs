@@ -27,4 +27,11 @@ public static class ShoppingCartHelper
         cart.Add(item);
         StaticHttpContext.Current?.Session.SetString("ShoppingCart", JsonSerializer.Serialize<List<ShoppingCartItem>>(cart));
     }
+    
+    public static void clearCart()
+    {
+        StaticHttpContext.Current?.Session.SetString("ShoppingCart", "[]");
+    }
+    
+    
 }

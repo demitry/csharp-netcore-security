@@ -48,4 +48,19 @@ public class HomeController : Controller
         var cart = ShoppingCartHelper.getCart();
         return View(cart);
     }
+
+    public IActionResult ClearCart()
+    {
+        ShoppingCartHelper.clearCart();
+        return RedirectToAction("ShowCart");
+    }
+
+    public IActionResult HackerPageClickjack()
+    {
+        return View();
+    }
+    public IActionResult HackerPage()
+    {
+        return View();
+    }
 }
